@@ -83,23 +83,30 @@ end
 ---@return Account | nil
 function db.getUser(username, password)
     local tempId = username .. password
-    local cache = UseTemp('user', tempId) ---@type Account | nil
+    local cache = UseTemp('user', tempId)
     if cache then
         return cache
     end
-    local user = MySQL.prepare.await(Query.SELECT_USER, { username, password }) --[[@as Account | nil]]
+
+    local result = MySQL.query.await(Query.SELECT_USER, { username, password })
+    local user = result and result[1] or nil
+
     SaveTemp('user', user, tempId)
     return user
 end
 
+
 ---@param id number
 ---@return Account | nil
 function db.getUserById(id)
-    local cache = UseTemp('user_by_id', id) ---@type Account | nil
+    local cache = UseTemp('user_by_id', id)
     if cache then
         return cache
     end
-    local user = MySQL.prepare.await(Query.SELECT_USER_BY_ID, { id }) --[[@as Account | nil]]
+
+    local result = MySQL.query.await(Query.SELECT_USER_BY_ID, { id })
+    local user = result and result[1] or nil
+
     SaveTemp('user_by_id', user, id)
     return user
 end
