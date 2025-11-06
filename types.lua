@@ -56,6 +56,7 @@
 ---@field id string
 ---@field accountId number
 ---@field player? Player
+---@field creator string
 
 ---@class PlaylistData
 ---@field name string
@@ -78,6 +79,7 @@
 ---@field duration number
 
 ---@class LoginData
+---@field id? number
 ---@field token? string
 ---@field username? string
 ---@field password? number

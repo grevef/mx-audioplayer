@@ -86,7 +86,8 @@
         "cancel": "Cancel",
         "done": "Done",
         "delete.confirm": "Please click again delete to confirm.",
-        "currently_playing": "Currently Playing"
+        "currently_playing": "Currently Playing",
+        "account_sharing_disabled": "You can't access the audioplayer, because the server disabled the account sharing."
     },
     "shared": {
         "title": "Nearby Players",
@@ -157,7 +158,15 @@
         "sign_up": "Sign Up",
         "login_successful": "Login successful",
         "invalid_username_or_password": "Invalid username or password",
-        "this_user_credentials_has_been_modified": "This user credentials has been modified. Please log in again."
+        "this_user_credentials_has_been_modified": "This user credentials has been modified. Please log in again.",
+        "select_account": "Select Your Account",
+        "select_account_subtitle": "Choose from your saved accounts or sign in manually",
+        "search_accounts": "Search accounts...",
+        "no_accounts_found": "No accounts found",
+        "try_different_search": "Try a different search term",
+        "manual_login": "Manual Login",
+        "no_saved_accounts": "No saved accounts found",
+        "back_to_accounts": "Back to Accounts"
     },
     "register": {
         "title": "Join the Audio Player",

@@ -27,9 +27,15 @@ function audioplayer:isUIDisabled()
     if not id or id == '' then
         return false
     end
-    local uiDisabled = lib.callback.await('mx-audioplayer:isUiDisabled', 0, id)
+    local uiDisabled = lib.callback.await('mx-audioplayer:isUiDisabled', false, id)
     if uiDisabled then
         Notification(i18n.t('general.ui_disabled'), 'error')
+        return true
+    end
+    if Config.EnableAccountSharing then return false end
+    local hasAccess = lib.callback.await('mx-audioplayer:hasAccess', false, id)
+    if not hasAccess then
+        Notification(i18n.t('general.account_sharing_disabled'), 'info')
         return true
     end
     return false
@@ -76,11 +82,13 @@ function audioplayer:open(options, handlers)
     if not id then return end
     self.handlers = handlers or {}
 
+    local accounts = lib.callback.await('mx-audioplayer:getUserAccounts', false)
     SendReactMessage('open', {
         playlist = self.playlist,
         currentSound = soundData,
         user = self.user,
-        player = player
+        player = player,
+        accounts = accounts
     })
     TriggerServerEvent('mx-audioplayer:setHandlers', id, handlers)
 
